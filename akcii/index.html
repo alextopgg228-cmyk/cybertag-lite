@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Акции CYBERTAG</title>
+    <meta name="description" content="Спецпредложения CYBERTAG для обновления и запуска лазертаг-арены.">
+    <link rel="icon" href="../assets/top_logotype.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body data-root="../">
+    <header class="site-header">
+      <a class="brand" href="../" aria-label="CYBERTAG"><img src="../assets/top_logotype.svg" alt="CYBERTAG"></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" data-menu-toggle><span></span><span></span><span></span></button>
+      <nav class="main-nav" data-nav>
+        <a href="../katalog/">Оборудование</a>
+        <a href="../bundles/">Комплекты</a>
+        <a href="../soft/">Софт</a>
+        <a href="../akcii/">Акции</a>
+        <a href="../kontakty/">Контакты</a>
+        <button class="nav-login" type="button" data-open-login>Вход</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <div class="section-inner">
+          <p class="eyebrow">Спецпредложения</p>
+          <h1>Акции CYBERTAG</h1>
+          <p class="page-lead">Действующие предложения для обновления площадки, получения CRM и материалов для запуска бизнеса.</p>
+        </div>
+      </section>
+
+      <section class="section-band">
+        <div class="section-inner">
+          <div class="offer-grid" data-offers></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <img src="../assets/top_logotype.svg" alt="CYBERTAG">
+        <p>© 2026 ООО «Кибертаг»</p>
+        <div class="social-links">
+          <a href="https://vk.com/cybertag" target="_blank" rel="noreferrer" aria-label="CYBERTAG ВКонтакте"><img src="../assets/social-vk.svg" alt=""></a>
+          <a href="https://www.youtube.com/channel/UCeqk4XzY4pF8dvOVTSGVkKw" target="_blank" rel="noreferrer" aria-label="CYBERTAG YouTube"><img src="../assets/social-yt.svg" alt=""></a>
+          <a href="https://www.facebook.com/CYBERTAG" target="_blank" rel="noreferrer" aria-label="CYBERTAG Facebook"><img src="../assets/social-facebook.svg" alt=""></a>
+        </div>
+      </div>
+    </footer>
+
+    <dialog class="login-modal" data-login-dialog>
+      <form class="login-box" method="dialog" data-login-form>
+        <div class="login-head"><h2>Вход</h2><button class="dialog-close" type="button" aria-label="Закрыть" data-close-login>×</button></div>
+        <label><span>Пользователь</span><input type="text" name="username" autocomplete="username" required></label>
+        <label><span>Пароль</span><input type="password" name="password" autocomplete="current-password" required></label>
+        <p class="login-error" data-login-error role="alert"></p>
+        <button class="button primary" type="submit">Войти</button>
+      </form>
+    </dialog>
+    <script src="../script.js"></script>
+  </body>
+</html>

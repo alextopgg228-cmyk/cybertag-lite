@@ -1,3 +1,5 @@
+const rootPath = document.body.dataset.root || "";
+const asset = (path) => `${rootPath}${path}`;
 const currency = new Intl.NumberFormat("ru-RU");
 
 const credentials = {
@@ -37,7 +39,7 @@ const equipment = [
   {
     title: "BASEX",
     image: "assets/catalog-basex.jpg",
-    meta: ["0,5 кг", "интерактивность арены"],
+    meta: ["0,5 кг", "интерактивность"],
     text: "Игровое устройство связывает площадку в единую систему и помогает строить сценарии на всей территории.",
     details: ["RGB-индикация", "Встроенный радиоканал", "Удобный монтаж"]
   },
@@ -51,8 +53,8 @@ const equipment = [
   {
     title: "Радиобаза",
     image: "assets/catalog-radiobase.jpg",
-    meta: ["0,3 кг", "покрытие арены"],
-    text: "Радиобаза поддерживает стабильную связь игровых комплектов и локальной сети арены.",
+    meta: ["0,3 кг", "радиопокрытие"],
+    text: "Радиобаза поддерживает стабильную связь игровых комплектов и локальной сети площадки.",
     details: ["Внешняя антенна", "Сетевой порт", "Компактный корпус"]
   }
 ];
@@ -67,13 +69,7 @@ const bundles = [
     oldPrice: 823900,
     price: 695500,
     badge: "Бонус",
-    details: [
-      "2 комплекта бластер + жилет",
-      "Программное обеспечение",
-      "Зарядное устройство Smart Li+ - 16 шт.",
-      "Блок питания 12В - 4 шт.",
-      "Ремкомплект - 1 шт."
-    ]
+    details: ["2 комплекта бластер + жилет", "Программное обеспечение", "Зарядное устройство Smart Li+ - 16 шт.", "Блок питания 12В - 4 шт.", "Ремкомплект - 1 шт."]
   },
   {
     title: "Optima Wireless",
@@ -85,12 +81,7 @@ const bundles = [
     price: 1016500,
     badge: "Хит продаж",
     hit: true,
-    details: [
-      "3 комплекта бластер + жилет",
-      "Зарядное устройство Smart Li+ - 22 шт.",
-      "15 жилетов и 15 бластеров",
-      "Радиобаза и BASEX"
-    ]
+    details: ["3 комплекта бластер + жилет", "Зарядное устройство Smart Li+ - 22 шт.", "15 жилетов и 15 бластеров", "Радиобаза и BASEX"]
   },
   {
     title: "Smart",
@@ -101,13 +92,7 @@ const bundles = [
     oldPrice: 1644650,
     price: 1387850,
     badge: "4 комплекта в подарок",
-    details: [
-      "Программное обеспечение в подарок",
-      "Зарядное устройство Smart Li+ - 32 шт.",
-      "Блок питания 12В - 6 шт.",
-      "20 жилетов и 20 бластеров",
-      "3 устройства BASEX и энерджайзер"
-    ]
+    details: ["Программное обеспечение в подарок", "Зарядное устройство Smart Li+ - 32 шт.", "Блок питания 12В - 6 шт.", "20 жилетов и 20 бластеров", "3 устройства BASEX и энерджайзер"]
   },
   {
     title: "Pro",
@@ -118,12 +103,7 @@ const bundles = [
     oldPrice: 2029850,
     price: 1708850,
     badge: "5 комплектов",
-    details: [
-      "Зарядное устройство Smart Li+ - 38 шт.",
-      "Ремкомплект - 2 шт.",
-      "25 жилетов и 25 бластеров",
-      "Расширенный набор интерактива"
-    ]
+    details: ["Зарядное устройство Smart Li+ - 38 шт.", "Ремкомплект - 2 шт.", "25 жилетов и 25 бластеров", "Расширенный набор интерактива"]
   },
   {
     title: "Elite",
@@ -134,12 +114,7 @@ const bundles = [
     oldPrice: 2453600,
     price: 2068400,
     badge: "6 комплектов",
-    details: [
-      "Зарядное устройство Smart Li+ - 47 шт.",
-      "Блок питания 12В - 8 шт.",
-      "30 жилетов и 30 бластеров",
-      "4 устройства BASEX и энерджайзер"
-    ]
+    details: ["Зарядное устройство Smart Li+ - 47 шт.", "Блок питания 12В - 8 шт.", "30 жилетов и 30 бластеров", "4 устройства BASEX и энерджайзер"]
   }
 ];
 
@@ -149,7 +124,7 @@ const offers = [
     image: "assets/offer-laserwar.jpg",
     date: "Июн 14, 2026 - Июн 14, 2027",
     code: "2762",
-    text: "Обновление действующей площадки до CYBERTAG 2.0 Black Edition для арен, которым нужен новый уровень игры."
+    text: "Обновление действующей площадки до CYBERTAG 2.0 Black Edition для тех, кому нужен новый уровень игры."
   },
   {
     title: "CRM-система для лазертага в подарок",
@@ -168,38 +143,10 @@ const offers = [
 ];
 
 const contacts = [
-  {
-    name: "Алина Данченкова",
-    role: "Менеджер по продажам",
-    phone: "+7 (900) 225-55-52",
-    tel: "+79002255552",
-    vk: "https://vk.com/laserwar_order67",
-    image: "assets/contact-alina.jpg"
-  },
-  {
-    name: "Дарья Кузьменкова",
-    role: "Менеджер по продажам",
-    phone: "+7 (904) 360-40-99",
-    tel: "+79043604099",
-    vk: "https://vk.com/lw_manager",
-    image: "assets/contact-darya.jpg"
-  },
-  {
-    name: "Наталья Орлова",
-    role: "Менеджер по продажам",
-    phone: "+7 (951) 694-01-00",
-    tel: "+79516940100",
-    vk: "https://vk.com/laserwar_store",
-    image: "assets/contact-natalia.jpg"
-  },
-  {
-    name: "Елена Крылова",
-    role: "Менеджер по продажам",
-    phone: "+7 (951) 701-77-55",
-    tel: "+79517017755",
-    vk: "https://vk.com/laserwar_shop",
-    image: "assets/contact-elena.jpg"
-  }
+  { name: "Алина Данченкова", role: "Менеджер по продажам", phone: "+7 (900) 225-55-52", tel: "+79002255552", vk: "https://vk.com/laserwar_order67", image: "assets/contact-alina.jpg" },
+  { name: "Дарья Кузьменкова", role: "Менеджер по продажам", phone: "+7 (904) 360-40-99", tel: "+79043604099", vk: "https://vk.com/lw_manager", image: "assets/contact-darya.jpg" },
+  { name: "Наталья Орлова", role: "Менеджер по продажам", phone: "+7 (951) 694-01-00", tel: "+79516940100", vk: "https://vk.com/laserwar_store", image: "assets/contact-natalia.jpg" },
+  { name: "Елена Крылова", role: "Менеджер по продажам", phone: "+7 (951) 701-77-55", tel: "+79517017755", vk: "https://vk.com/laserwar_shop", image: "assets/contact-elena.jpg" }
 ];
 
 const storage = {
@@ -222,22 +169,22 @@ const formatPrice = (value) => `${currency.format(value)} ₽`;
 
 const renderPartners = () => {
   const root = document.querySelector("[data-partners]");
+  if (!root) return;
   root.innerHTML = partners.map(([name, image, href]) => `
     <a href="${href}" target="_blank" rel="noreferrer" aria-label="${name}">
-      <img src="${image}" alt="${name}" loading="lazy">
+      <img src="${asset(image)}" alt="${name}" loading="lazy">
     </a>
   `).join("");
 };
 
 const renderEquipment = () => {
   const root = document.querySelector("[data-equipment]");
+  if (!root) return;
   root.innerHTML = equipment.map((item) => `
     <article class="equipment-card">
-      <img src="${item.image}" alt="${item.title}" loading="lazy">
+      <img src="${asset(item.image)}" alt="${item.title}" loading="lazy">
       <div class="card-body">
-        <div class="equipment-meta">
-          ${item.meta.map((meta) => `<span class="pill">${meta}</span>`).join("")}
-        </div>
+        <div class="equipment-meta">${item.meta.map((meta) => `<span class="pill">${meta}</span>`).join("")}</div>
         <h3>${item.title}</h3>
         <p>${item.text}</p>
         <ul>${item.details.map((detail) => `<li>${detail}</li>`).join("")}</ul>
@@ -248,32 +195,21 @@ const renderEquipment = () => {
 
 const renderBundles = () => {
   const root = document.querySelector("[data-bundles]");
+  if (!root) return;
   root.innerHTML = bundles.map((bundle) => `
     <article class="bundle-card${bundle.hit ? " hit" : ""}">
       <div class="bundle-image">
-        <img src="${bundle.image}" alt="${bundle.title}" loading="lazy">
+        <img src="${asset(bundle.image)}" alt="${bundle.title}" loading="lazy">
         <span class="badge">${bundle.badge}</span>
       </div>
       <div class="bundle-body">
-        <div class="bundle-topline">
-          <h3>${bundle.title}</h3>
-          <span>${bundle.sets}</span>
-        </div>
+        <div class="bundle-topline"><h3>${bundle.title}</h3><span>${bundle.sets}</span></div>
         <dl class="bundle-facts">
-          <div>
-            <dt>Игроков</dt>
-            <dd>${bundle.players}</dd>
-          </div>
-          <div>
-            <dt>Площадь</dt>
-            <dd>${bundle.area}</dd>
-          </div>
+          <div><dt>Игроков</dt><dd>${bundle.players}</dd></div>
+          <div><dt>Площадь</dt><dd>${bundle.area}</dd></div>
         </dl>
         <ul>${bundle.details.map((detail) => `<li>${detail}</li>`).join("")}</ul>
-        <div class="price-row">
-          <span class="old-price">${formatPrice(bundle.oldPrice)}</span>
-          <span class="new-price">${formatPrice(bundle.price)}</span>
-        </div>
+        <div class="price-row"><span class="old-price">${formatPrice(bundle.oldPrice)}</span><span class="new-price">${formatPrice(bundle.price)}</span></div>
         <button class="button primary" type="button" data-add-bundle="${bundle.title}">В корзину</button>
       </div>
     </article>
@@ -282,14 +218,12 @@ const renderBundles = () => {
 
 const renderOffers = () => {
   const root = document.querySelector("[data-offers]");
+  if (!root) return;
   root.innerHTML = offers.map((offer) => `
     <article class="offer-card">
-      <img src="${offer.image}" alt="${offer.title}" loading="lazy">
+      <img src="${asset(offer.image)}" alt="${offer.title}" loading="lazy">
       <div class="card-body">
-        <div class="offer-date">
-          <span>${offer.date}</span>
-          <span class="offer-code">ID ${offer.code}</span>
-        </div>
+        <div class="offer-date"><span>${offer.date}</span><span class="offer-code">ID ${offer.code}</span></div>
         <h3>${offer.title}</h3>
         <p>${offer.text}</p>
       </div>
@@ -299,9 +233,10 @@ const renderOffers = () => {
 
 const renderContacts = () => {
   const root = document.querySelector("[data-contacts]");
+  if (!root) return;
   root.innerHTML = contacts.map((contact) => `
     <article class="contact-card">
-      <img src="${contact.image}" alt="${contact.name}" loading="lazy">
+      <img src="${asset(contact.image)}" alt="${contact.name}" loading="lazy">
       <h3>${contact.name}</h3>
       <p>${contact.role}</p>
       <strong>${contact.phone}</strong>
@@ -316,6 +251,8 @@ const renderContacts = () => {
 };
 
 const getCart = () => storage.get("cybertag-cart", []);
+const getUser = () => storage.get("cybertag-user", null);
+const getRequests = () => storage.get("cybertag-requests", []);
 
 const setCart = (cart) => {
   storage.set("cybertag-cart", cart);
@@ -327,21 +264,19 @@ const renderCart = () => {
   const total = cart.reduce((sum, item) => sum + item.price, 0);
   const countText = `${cart.length} ${cart.length === 1 ? "позиция" : cart.length > 1 && cart.length < 5 ? "позиции" : "позиций"}`;
 
-  document.querySelector("[data-cart-count]").textContent = countText;
-  document.querySelector("[data-cart-total]").textContent = formatPrice(total);
-  document.querySelector("[data-dashboard-cart]").textContent = formatPrice(total);
+  document.querySelectorAll("[data-cart-count]").forEach((node) => { node.textContent = countText; });
+  document.querySelectorAll("[data-cart-total], [data-dashboard-cart]").forEach((node) => { node.textContent = formatPrice(total); });
 
   const list = document.querySelector("[data-cart-list]");
+  if (!list) return;
+
   if (!cart.length) {
     list.innerHTML = "<li><span>Корзина пуста</span></li>";
     return;
   }
 
   list.innerHTML = cart.map((item) => `
-    <li>
-      <span>${item.title}</span>
-      <strong>${formatPrice(item.price)}</strong>
-    </li>
+    <li><span>${item.title}</span><strong>${formatPrice(item.price)}</strong></li>
   `).join("");
 };
 
@@ -351,40 +286,69 @@ const addBundleToCart = (title) => {
   setCart([...getCart(), { title: bundle.title, price: bundle.price }]);
 };
 
-const getRequests = () => storage.get("cybertag-requests", []);
+const openLoginModal = () => {
+  const dialog = document.querySelector("[data-login-dialog]");
+  const error = document.querySelector("[data-login-error]");
+  if (!dialog) return;
+  if (error) error.textContent = "";
+  dialog.showModal();
+};
+
+const checkout = () => {
+  const status = document.querySelector("[data-cart-status]");
+  if (!getUser()) {
+    storage.set("cybertag-checkout-pending", true);
+    if (status) status.textContent = "Для оформления войдите в аккаунт.";
+    openLoginModal();
+    return;
+  }
+
+  const form = document.querySelector("[data-feedback-form]");
+  if (form) {
+    const cart = getCart();
+    const message = cart.length
+      ? `Хочу оформить заказ: ${cart.map((item) => item.title).join(", ")}.`
+      : "Хочу оформить заказ.";
+    form.elements.message.value = message;
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (status) {
+      status.textContent = "Заполните контактные данные в форме.";
+      status.classList.add("success");
+    }
+    return;
+  }
+
+  window.location.href = `${rootPath}kontakty/#feedback`;
+};
 
 const renderDashboard = () => {
-  const user = storage.get("cybertag-user", null);
-  const dashboard = document.querySelector("[data-dashboard]");
+  const user = getUser();
   const loginButton = document.querySelector("[data-open-login]");
+  const dashboard = document.querySelector("[data-dashboard]");
   const requestCount = document.querySelector("[data-request-count]");
   const userName = document.querySelector("[data-user-name]");
 
-  if (user) {
-    dashboard.hidden = false;
-    loginButton.textContent = user.username;
-    userName.textContent = user.name;
-  } else {
-    dashboard.hidden = true;
-    loginButton.textContent = "Вход";
-  }
-
-  requestCount.textContent = String(getRequests().length);
+  if (loginButton) loginButton.textContent = user ? user.username : "Вход";
+  if (dashboard) dashboard.hidden = !user;
+  if (userName && user) userName.textContent = user.name;
+  if (requestCount) requestCount.textContent = String(getRequests().length);
   renderCart();
 };
 
 const setupMenu = () => {
   const toggle = document.querySelector("[data-menu-toggle]");
   const nav = document.querySelector("[data-nav]");
+  if (!toggle || !nav) return;
 
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("menu-open");
+  toggle.addEventListener("click", () => document.body.classList.toggle("menu-open"));
+  nav.addEventListener("click", (event) => {
+    if (event.target.matches("a, button")) document.body.classList.remove("menu-open");
   });
 
-  nav.addEventListener("click", (event) => {
-    if (event.target.matches("a, button")) {
-      document.body.classList.remove("menu-open");
-    }
+  const current = location.pathname.replace(/\/index\.html$/, "/");
+  nav.querySelectorAll("a").forEach((link) => {
+    const url = new URL(link.getAttribute("href"), location.href);
+    if (url.pathname.replace(/\/index\.html$/, "/") === current) link.classList.add("active");
   });
 };
 
@@ -395,14 +359,19 @@ const setupCart = () => {
     addBundleToCart(button.dataset.addBundle);
   });
 
-  document.querySelector("[data-clear-cart]").addEventListener("click", () => {
-    setCart([]);
+  document.querySelectorAll("[data-clear-cart]").forEach((button) => {
+    button.addEventListener("click", () => setCart([]));
+  });
+
+  document.querySelectorAll("[data-checkout]").forEach((button) => {
+    button.addEventListener("click", checkout);
   });
 };
 
 const setupFeedback = () => {
   const form = document.querySelector("[data-feedback-form]");
   const status = document.querySelector("[data-feedback-status]");
+  if (!form) return;
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -416,11 +385,18 @@ const setupFeedback = () => {
       createdAt: new Date().toISOString()
     });
     storage.set("cybertag-requests", requests);
+    storage.remove("cybertag-checkout-pending");
     form.reset();
-    status.textContent = "Заявка сохранена.";
-    status.classList.add("success");
+    if (status) {
+      status.textContent = "Заявка сохранена.";
+      status.classList.add("success");
+    }
     renderDashboard();
   });
+
+  if (location.hash === "#feedback") {
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 };
 
 const setupLogin = () => {
@@ -429,15 +405,15 @@ const setupLogin = () => {
   const closeButton = document.querySelector("[data-close-login]");
   const form = document.querySelector("[data-login-form]");
   const error = document.querySelector("[data-login-error]");
+  if (!dialog || !openButton || !closeButton || !form) return;
 
   openButton.addEventListener("click", () => {
-    const user = storage.get("cybertag-user", null);
-    if (user) {
-      document.querySelector("[data-dashboard]").scrollIntoView({ behavior: "smooth", block: "start" });
+    if (getUser()) {
+      const dashboard = document.querySelector("[data-dashboard]");
+      if (dashboard) dashboard.scrollIntoView({ behavior: "smooth", block: "start" });
       return;
     }
-    error.textContent = "";
-    dialog.showModal();
+    openLoginModal();
   });
 
   closeButton.addEventListener("click", () => dialog.close());
@@ -449,21 +425,21 @@ const setupLogin = () => {
     const password = String(data.get("password"));
 
     if (username === credentials.username && password === credentials.password) {
-      storage.set("cybertag-user", {
-        username: credentials.username,
-        name: credentials.name
-      });
+      storage.set("cybertag-user", { username: credentials.username, name: credentials.name });
       form.reset();
       dialog.close();
       renderDashboard();
-    } else {
+      if (storage.get("cybertag-checkout-pending", false)) checkout();
+    } else if (error) {
       error.textContent = "Неверный пользователь или пароль.";
     }
   });
 
-  document.querySelector("[data-logout]").addEventListener("click", () => {
-    storage.remove("cybertag-user");
-    renderDashboard();
+  document.querySelectorAll("[data-logout]").forEach((button) => {
+    button.addEventListener("click", () => {
+      storage.remove("cybertag-user");
+      renderDashboard();
+    });
   });
 };
 

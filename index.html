@@ -4,61 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CYBERTAG - оборудование для аренного лазертага</title>
-    <meta name="description" content="Оборудование, комплекты, акции и контакты CYBERTAG для запуска арены лазертага.">
+    <meta name="description" content="Оборудование, комплекты, софт, акции и контакты CYBERTAG для запуска арены лазертага.">
     <link rel="icon" href="assets/top_logotype.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
-    <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="CYBERTAG">
-        <img src="assets/top_logotype.svg" alt="CYBERTAG">
-      </a>
-
-      <button class="menu-toggle" type="button" aria-label="Открыть меню" data-menu-toggle>
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
+  <body data-root="">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="CYBERTAG"><img src="assets/top_logotype.svg" alt="CYBERTAG"></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" data-menu-toggle><span></span><span></span><span></span></button>
       <nav class="main-nav" data-nav>
-        <a href="#catalog">Оборудование</a>
-        <a href="#bundles">Комплекты</a>
-        <a href="#offers">Акции</a>
-        <a href="#contacts">Контакты</a>
+        <a href="katalog/">Оборудование</a>
+        <a href="bundles/">Комплекты</a>
+        <a href="soft/">Софт</a>
+        <a href="akcii/">Акции</a>
+        <a href="kontakty/">Контакты</a>
         <button class="nav-login" type="button" data-open-login>Вход</button>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <picture>
-          <img class="hero-bg" src="assets/hero.jpg" alt="Игровая арена CYBERTAG">
-        </picture>
-        <div class="hero-overlay"></div>
+    <main>
+      <section class="hero hero-home">
+        <img class="hero-bg" src="assets/hero.jpg" alt="Игровая арена CYBERTAG">
+        <div class="hero-shade"></div>
         <div class="hero-content">
           <p class="eyebrow">Laserwar production</p>
-          <h1 id="hero-title">Аренное оборудование CYBERTAG</h1>
-          <p class="hero-lead">
-            Профессиональная линейка для аренного лазертага: бластеры, жилеты,
-            интерактивные устройства, радиобазы и готовые комплекты для бизнеса.
-          </p>
+          <h1>Аренное оборудование CYBERTAG</h1>
+          <p class="hero-lead">Профессиональная линейка для коммерческого лазертага: бластеры, жилеты, интерактивные устройства, радиобазы, софт и готовые комплекты для бизнеса.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#bundles">Выбрать комплект</a>
-            <a class="button secondary" href="#contacts">Связаться с отделом продаж</a>
+            <a class="button primary" href="bundles/">Выбрать комплект</a>
+            <a class="button ghost" href="kontakty/">Связаться с отделом продаж</a>
           </div>
           <dl class="hero-stats">
-            <div>
-              <dt>70+</dt>
-              <dd>арен</dd>
-            </div>
-            <div>
-              <dt>23</dt>
-              <dd>страны</dd>
-            </div>
-            <div>
-              <dt>24 ч</dt>
-              <dd>работа аккумулятора</dd>
-            </div>
+            <div><dt>70+</dt><dd>арен</dd></div>
+            <div><dt>23</dt><dd>страны</dd></div>
+            <div><dt>24 ч</dt><dd>работа аккумулятора</dd></div>
           </dl>
         </div>
       </section>
@@ -67,212 +46,62 @@
         <div class="partner-track" data-partners></div>
       </section>
 
-      <section class="intro section-band">
+      <section class="section-band">
         <div class="section-inner two-column">
           <div>
             <p class="eyebrow">CYBERTAG 2.0 Black Edition</p>
-            <h2>Оборудование для плотной аренной игры</h2>
+            <h2>Система для плотной аренной игры</h2>
           </div>
-          <p>
-            CYBERTAG - торговая марка Laserwar. Линейка рассчитана на коммерческие
-            лазертаг-арены, где важны безопасность, стабильная радиосвязь,
-            быстрая зарядка, удобная посадка экипировки и понятное обслуживание.
-          </p>
+          <p class="lead-copy">CYBERTAG - торговая марка Laserwar. Линейка рассчитана на коммерческие площадки, где важны безопасность, стабильная радиосвязь, быстрый запуск игр и понятное обслуживание оборудования.</p>
         </div>
       </section>
 
-      <section class="media-split" aria-label="Преимущества">
-        <div class="media-image">
-          <img src="assets/catalog-title.jpg" alt="Комплект CYBERTAG на арене">
-        </div>
+      <section class="media-split">
+        <div class="media-image"><img src="assets/catalog-title.jpg" alt="Комплект CYBERTAG"></div>
         <div class="media-copy">
-          <p class="eyebrow">Что входит в систему</p>
-          <h2>Единый набор для запуска и расширения арены</h2>
+          <p class="eyebrow">Разделы сайта</p>
+          <h2>Все ключевые данные вынесены на отдельные страницы</h2>
           <div class="feature-grid">
-            <article>
-              <span>01</span>
-              <h3>Безопасная экипировка</h3>
-              <p>Компактный бластер, регулируемый жилет, датчики поражения и мягкие элементы корпуса.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Интерактивное поле</h3>
-              <p>BASEX, энерджайзеры и радиобазы добавляют сценарии и поддерживают связь по всей площадке.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Готовые комплекты</h3>
-              <p>Пять конфигураций от Start до Elite закрывают арены от 12 до 36 игроков.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Сервис и консультации</h3>
-              <p>Менеджеры помогают подобрать состав, рассчитать бюджет и подготовить заказ.</p>
-            </article>
+            <a href="katalog/" class="feature-card"><span>01</span><h3>Оборудование</h3><p>Бластер, жилет, BASEX, энерджайзер и радиобаза.</p></a>
+            <a href="bundles/" class="feature-card"><span>02</span><h3>Комплекты</h3><p>Готовые наборы Start, Optima Wireless, Smart, Pro и Elite.</p></a>
+            <a href="soft/" class="feature-card"><span>03</span><h3>Софт</h3><p>Панель администратора, статистика и системные требования.</p></a>
+            <a href="kontakty/" class="feature-card"><span>04</span><h3>Контакты</h3><p>Менеджеры, телефоны, мессенджеры и форма заявки.</p></a>
           </div>
         </div>
       </section>
 
-      <section class="section-band light" id="catalog" aria-labelledby="catalog-title">
-        <div class="section-inner">
-          <div class="section-head">
-            <p class="eyebrow">Каталог</p>
-            <h2 id="catalog-title">Оборудование CYBERTAG</h2>
-            <p>Ключевые устройства для аренного лазертага с характеристиками из каталога.</p>
-          </div>
-          <div class="equipment-grid" data-equipment></div>
-        </div>
-      </section>
-
-      <section class="section-band dark" id="bundles" aria-labelledby="bundles-title">
-        <div class="section-inner">
-          <div class="section-head">
-            <p class="eyebrow">Лазертаг для бизнеса</p>
-            <h2 id="bundles-title">Готовые комплекты</h2>
-            <p>Выберите набор под число игроков и площадь арены. Добавление в корзину работает локально в браузере.</p>
-          </div>
-          <div class="bundle-grid" data-bundles></div>
-        </div>
-      </section>
-
-      <section class="section-band calculator" aria-labelledby="cart-title">
-        <div class="section-inner two-column">
-          <div>
-            <p class="eyebrow">Заказ</p>
-            <h2 id="cart-title">Текущая корзина</h2>
-            <p>Список выбранных комплектов можно отправить через форму обратной связи.</p>
-          </div>
-          <div class="cart-panel">
-            <div class="cart-summary">
-              <strong data-cart-count>0 позиций</strong>
-              <span data-cart-total>0 ₽</span>
-            </div>
-            <ul class="cart-list" data-cart-list></ul>
-            <button class="button secondary compact" type="button" data-clear-cart>Очистить корзину</button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-band light" id="offers" aria-labelledby="offers-title">
-        <div class="section-inner">
-          <div class="section-head">
-            <p class="eyebrow">Акции</p>
-            <h2 id="offers-title">Спецпредложения CYBERTAG</h2>
-            <p>Действующие предложения и материалы для запуска или обновления арены.</p>
-          </div>
-          <div class="offer-grid" data-offers></div>
-        </div>
-      </section>
-
-      <section class="map-section" aria-labelledby="trust-title">
+      <section class="map-section">
         <div class="map-copy">
           <p class="eyebrow">Нам доверяют</p>
-          <h2 id="trust-title">Системы работают в 23 странах</h2>
-          <p>
-            Больше 70 арен на оборудовании CYBERTAG ежедневно проводят игры и
-            используют поддержку производителя для обслуживания бизнеса.
-          </p>
-          <a class="button primary" href="#contacts">Получить консультацию</a>
+          <h2>Системы работают в 23 странах</h2>
+          <p>Больше 70 площадок на оборудовании CYBERTAG ежедневно проводят игры и используют поддержку производителя для обслуживания бизнеса.</p>
+          <a class="button primary" href="kontakty/">Получить консультацию</a>
         </div>
         <img src="assets/map.png" alt="Карта присутствия CYBERTAG">
-      </section>
-
-      <section class="section-band light contacts" id="contacts" aria-labelledby="contacts-title">
-        <div class="section-inner">
-          <div class="section-head">
-            <p class="eyebrow">Контакты</p>
-            <h2 id="contacts-title">Отдел продаж CYBERTAG</h2>
-            <p>Российская Федерация, г. Смоленск, ул. Попова, 40/2</p>
-          </div>
-
-          <div class="contact-grid" data-contacts></div>
-
-          <div class="contact-form-wrap">
-            <form class="contact-form" data-feedback-form>
-              <h3>Форма обратной связи</h3>
-              <label>
-                <span>Email</span>
-                <input type="email" name="email" autocomplete="email" required>
-              </label>
-              <label>
-                <span>Имя</span>
-                <input type="text" name="name" autocomplete="name" required>
-              </label>
-              <label>
-                <span>Сообщение</span>
-                <textarea name="message" rows="5" required></textarea>
-              </label>
-              <label class="checkbox-line">
-                <input type="checkbox" required>
-                <span>Согласен с условиями политики конфиденциальности</span>
-              </label>
-              <button class="button primary" type="submit">Отправить</button>
-              <p class="form-status" data-feedback-status role="status"></p>
-            </form>
-
-            <aside class="login-dashboard" data-dashboard hidden>
-              <h3>Кабинет менеджера</h3>
-              <div class="dashboard-line">
-                <span>Пользователь</span>
-                <strong data-user-name>manager</strong>
-              </div>
-              <div class="dashboard-line">
-                <span>Заявки</span>
-                <strong data-request-count>0</strong>
-              </div>
-              <div class="dashboard-line">
-                <span>Корзина</span>
-                <strong data-dashboard-cart>0 ₽</strong>
-              </div>
-              <button class="button secondary compact" type="button" data-logout>Выйти</button>
-            </aside>
-          </div>
-        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="footer-gallery" aria-label="Сертификаты и служебные изображения">
-        <img src="assets/footer-1.png" alt="">
-        <img src="assets/footer-2.png" alt="">
-        <img src="assets/footer-3.png" alt="">
-      </div>
       <div class="footer-main">
         <img src="assets/top_logotype.svg" alt="CYBERTAG">
         <p>© 2026 ООО «Кибертаг»</p>
         <div class="social-links">
-          <a href="https://vk.com/cybertag" target="_blank" rel="noreferrer" aria-label="CYBERTAG ВКонтакте">
-            <img src="assets/social-vk.svg" alt="">
-          </a>
-          <a href="https://www.youtube.com/channel/UCeqk4XzY4pF8dvOVTSGVkKw" target="_blank" rel="noreferrer" aria-label="CYBERTAG YouTube">
-            <img src="assets/social-yt.svg" alt="">
-          </a>
-          <a href="https://www.facebook.com/CYBERTAG" target="_blank" rel="noreferrer" aria-label="CYBERTAG Facebook">
-            <img src="assets/social-facebook.svg" alt="">
-          </a>
+          <a href="https://vk.com/cybertag" target="_blank" rel="noreferrer" aria-label="CYBERTAG ВКонтакте"><img src="assets/social-vk.svg" alt=""></a>
+          <a href="https://www.youtube.com/channel/UCeqk4XzY4pF8dvOVTSGVkKw" target="_blank" rel="noreferrer" aria-label="CYBERTAG YouTube"><img src="assets/social-yt.svg" alt=""></a>
+          <a href="https://www.facebook.com/CYBERTAG" target="_blank" rel="noreferrer" aria-label="CYBERTAG Facebook"><img src="assets/social-facebook.svg" alt=""></a>
         </div>
       </div>
     </footer>
 
     <dialog class="login-modal" data-login-dialog>
       <form class="login-box" method="dialog" data-login-form>
-        <div class="login-head">
-          <h2>Вход</h2>
-          <button class="dialog-close" type="button" aria-label="Закрыть" data-close-login>×</button>
-        </div>
-        <label>
-          <span>Пользователь</span>
-          <input type="text" name="username" autocomplete="username" required>
-        </label>
-        <label>
-          <span>Пароль</span>
-          <input type="password" name="password" autocomplete="current-password" required>
-        </label>
+        <div class="login-head"><h2>Вход</h2><button class="dialog-close" type="button" aria-label="Закрыть" data-close-login>×</button></div>
+        <label><span>Пользователь</span><input type="text" name="username" autocomplete="username" required></label>
+        <label><span>Пароль</span><input type="password" name="password" autocomplete="current-password" required></label>
         <p class="login-error" data-login-error role="alert"></p>
         <button class="button primary" type="submit">Войти</button>
       </form>
     </dialog>
-
     <script src="script.js"></script>
   </body>
 </html>
