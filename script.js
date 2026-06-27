@@ -259,6 +259,13 @@ const setCart = (cart) => {
   renderCart();
 };
 
+const getCartMessage = () => {
+  const cart = getCart();
+  return cart.length
+    ? `Хочу оформить заказ: ${cart.map((item) => item.title).join(", ")}.`
+    : "Хочу оформить заказ.";
+};
+
 const renderCart = () => {
   const cart = getCart();
   const total = cart.reduce((sum, item) => sum + item.price, 0);
@@ -266,12 +273,41 @@ const renderCart = () => {
 
   document.querySelectorAll("[data-cart-count]").forEach((node) => { node.textContent = countText; });
   document.querySelectorAll("[data-cart-total], [data-dashboard-cart]").forEach((node) => { node.textContent = formatPrice(total); });
+  document.querySelectorAll("[data-cart-badge]").forEach((node) => {
+    node.textContent = cart.length > 99 ? "99+" : String(cart.length);
+  });
+  document.querySelectorAll("[data-checkout], [data-clear-cart]").forEach((button) => {
+    button.disabled = cart.length === 0;
+  });
 
   const list = document.querySelector("[data-cart-list]");
+  const empty = document.querySelector("[data-cart-empty]");
   if (!list) return;
 
   if (!cart.length) {
-    list.innerHTML = "<li><span>Корзина пуста</span></li>";
+    list.innerHTML = list.hasAttribute("data-cart-detailed") ? "" : "<li><span>Корзина пуста</span></li>";
+    if (empty) empty.hidden = false;
+    return;
+  }
+
+  if (empty) empty.hidden = true;
+
+  if (list.hasAttribute("data-cart-detailed")) {
+    list.innerHTML = cart.map((item, index) => {
+      const bundle = bundles.find((entry) => entry.title === item.title);
+      const image = bundle ? asset(bundle.image) : asset("assets/top_logotype.svg");
+      return `
+        <li class="cart-page-item">
+          <img src="${image}" alt="${item.title}">
+          <div>
+            <span>Комплект оборудования</span>
+            <strong>${item.title}</strong>
+          </div>
+          <b>${formatPrice(item.price)}</b>
+          <button class="cart-remove" type="button" data-remove-cart-index="${index}" aria-label="Удалить ${item.title}">×</button>
+        </li>
+      `;
+    }).join("");
     return;
   }
 
@@ -286,31 +322,25 @@ const addBundleToCart = (title) => {
   setCart([...getCart(), { title: bundle.title, price: bundle.price }]);
 };
 
-const openLoginModal = () => {
-  const dialog = document.querySelector("[data-login-dialog]");
-  const error = document.querySelector("[data-login-error]");
-  if (!dialog) return;
-  if (error) error.textContent = "";
-  dialog.showModal();
-};
-
 const checkout = () => {
   const status = document.querySelector("[data-cart-status]");
+  if (!getCart().length) {
+    if (status) status.textContent = "Добавьте комплект перед оформлением.";
+    return;
+  }
+
   if (!getUser()) {
     storage.set("cybertag-checkout-pending", true);
     if (status) status.textContent = "Для оформления войдите в аккаунт.";
-    openLoginModal();
+    window.location.href = `${rootPath}login/?next=checkout`;
     return;
   }
 
   const form = document.querySelector("[data-feedback-form]");
   if (form) {
-    const cart = getCart();
-    const message = cart.length
-      ? `Хочу оформить заказ: ${cart.map((item) => item.title).join(", ")}.`
-      : "Хочу оформить заказ.";
-    form.elements.message.value = message;
+    form.elements.message.value = getCartMessage();
     form.scrollIntoView({ behavior: "smooth", block: "start" });
+    storage.remove("cybertag-checkout-pending");
     if (status) {
       status.textContent = "Заполните контактные данные в форме.";
       status.classList.add("success");
@@ -318,17 +348,21 @@ const checkout = () => {
     return;
   }
 
-  window.location.href = `${rootPath}kontakty/#feedback`;
+  storage.set("cybertag-checkout-pending", true);
+  window.location.href = `${rootPath}kontakty/?checkout=1#feedback`;
 };
 
 const renderDashboard = () => {
   const user = getUser();
-  const loginButton = document.querySelector("[data-open-login]");
+  const loginLinks = document.querySelectorAll("[data-login-link]");
   const dashboard = document.querySelector("[data-dashboard]");
   const requestCount = document.querySelector("[data-request-count]");
   const userName = document.querySelector("[data-user-name]");
 
-  if (loginButton) loginButton.textContent = user ? user.username : "Вход";
+  loginLinks.forEach((link) => {
+    link.textContent = user ? user.username : "Войти";
+    link.href = user ? `${rootPath}kontakty/` : `${rootPath}login/`;
+  });
   if (dashboard) dashboard.hidden = !user;
   if (userName && user) userName.textContent = user.name;
   if (requestCount) requestCount.textContent = String(getRequests().length);
@@ -355,8 +389,15 @@ const setupMenu = () => {
 const setupCart = () => {
   document.addEventListener("click", (event) => {
     const button = event.target.closest("[data-add-bundle]");
-    if (!button) return;
-    addBundleToCart(button.dataset.addBundle);
+    if (button) {
+      addBundleToCart(button.dataset.addBundle);
+      return;
+    }
+
+    const removeButton = event.target.closest("[data-remove-cart-index]");
+    if (!removeButton) return;
+    const index = Number(removeButton.dataset.removeCartIndex);
+    setCart(getCart().filter((_, itemIndex) => itemIndex !== index));
   });
 
   document.querySelectorAll("[data-clear-cart]").forEach((button) => {
@@ -395,45 +436,40 @@ const setupFeedback = () => {
   });
 
   if (location.hash === "#feedback") {
+    if (getUser() && storage.get("cybertag-checkout-pending", false) && getCart().length) {
+      form.elements.message.value = getCartMessage();
+      storage.remove("cybertag-checkout-pending");
+      if (status) {
+        status.textContent = "Состав заказа добавлен в сообщение.";
+        status.classList.add("success");
+      }
+    }
     form.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 };
 
 const setupLogin = () => {
-  const dialog = document.querySelector("[data-login-dialog]");
-  const openButton = document.querySelector("[data-open-login]");
-  const closeButton = document.querySelector("[data-close-login]");
-  const form = document.querySelector("[data-login-form]");
+  const form = document.querySelector("[data-login-page-form]");
   const error = document.querySelector("[data-login-error]");
-  if (!dialog || !openButton || !closeButton || !form) return;
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const username = String(data.get("username")).trim();
+      const password = String(data.get("password"));
 
-  openButton.addEventListener("click", () => {
-    if (getUser()) {
-      const dashboard = document.querySelector("[data-dashboard]");
-      if (dashboard) dashboard.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-    openLoginModal();
-  });
-
-  closeButton.addEventListener("click", () => dialog.close());
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const data = new FormData(form);
-    const username = String(data.get("username")).trim();
-    const password = String(data.get("password"));
-
-    if (username === credentials.username && password === credentials.password) {
-      storage.set("cybertag-user", { username: credentials.username, name: credentials.name });
-      form.reset();
-      dialog.close();
-      renderDashboard();
-      if (storage.get("cybertag-checkout-pending", false)) checkout();
-    } else if (error) {
-      error.textContent = "Неверный пользователь или пароль.";
-    }
-  });
+      if (username === credentials.username && password === credentials.password) {
+        storage.set("cybertag-user", { username: credentials.username, name: credentials.name });
+        form.reset();
+        const next = new URLSearchParams(location.search).get("next");
+        window.location.href = next === "checkout"
+          ? `${rootPath}kontakty/?checkout=1#feedback`
+          : `${rootPath}kontakty/`;
+      } else if (error) {
+        error.textContent = "Неверный пользователь или пароль.";
+      }
+    });
+  }
 
   document.querySelectorAll("[data-logout]").forEach((button) => {
     button.addEventListener("click", () => {

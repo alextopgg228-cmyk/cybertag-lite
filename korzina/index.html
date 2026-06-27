@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Акции CYBERTAG</title>
-    <meta name="description" content="Спецпредложения CYBERTAG для обновления и запуска лазертаг-арены.">
+    <title>Корзина CYBERTAG</title>
+    <meta name="description" content="Корзина выбранных комплектов оборудования CYBERTAG.">
     <link rel="icon" href="../assets/top_logotype.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../styles.css?v=20260627-4">
   </head>
@@ -18,17 +18,42 @@
     </header>
 
     <main>
-      <section class="page-hero">
+      <section class="page-hero cart-hero">
         <div class="section-inner">
-          <p class="eyebrow">Спецпредложения</p>
-          <h1>Акции CYBERTAG</h1>
-          <p class="page-lead">Действующие предложения для обновления площадки, получения CRM и материалов для запуска бизнеса.</p>
+          <p class="eyebrow">Ваш заказ</p>
+          <h1>Корзина</h1>
+          <p class="page-lead">Проверьте выбранные комплекты и перейдите к оформлению заявки.</p>
         </div>
       </section>
 
       <section class="section-band">
-        <div class="section-inner">
-          <div class="offer-grid" data-offers></div>
+        <div class="section-inner cart-layout">
+          <div class="cart-page-items">
+            <div class="section-heading compact-heading">
+              <p class="eyebrow">Состав заказа</p>
+              <h2 data-cart-count>0 позиций</h2>
+            </div>
+            <div class="cart-empty" data-cart-empty hidden>
+              <h3>Корзина пуста</h3>
+              <p>Добавьте подходящий комплект для вашей игровой площадки.</p>
+              <a class="button primary compact" href="../bundles/">Выбрать комплект</a>
+            </div>
+            <ul class="cart-page-list" data-cart-list data-cart-detailed></ul>
+          </div>
+
+          <aside class="cart-order-summary" aria-label="Итого по заказу">
+            <p class="eyebrow">Итого</p>
+            <div class="cart-summary">
+              <strong>Стоимость</strong>
+              <span data-cart-total>0 ₽</span>
+            </div>
+            <p>Финальную стоимость и условия поставки подтвердит менеджер.</p>
+            <div class="cart-actions">
+              <button class="button primary" type="button" data-checkout>Оформить</button>
+              <button class="button secondary" type="button" data-clear-cart>Очистить</button>
+            </div>
+            <p class="cart-status" data-cart-status role="status"></p>
+          </aside>
         </div>
       </section>
     </main>
