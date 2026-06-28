@@ -1,70 +1,54 @@
 const menuButton = document.querySelector("[data-menu-toggle]");
-const mainNav = document.querySelector("[data-nav]");
+const nav = document.querySelector("[data-nav]");
 
-if (menuButton && mainNav) {
+if (menuButton && nav) {
   menuButton.addEventListener("click", () => {
     const opened = document.body.classList.toggle("menu-open");
     menuButton.setAttribute("aria-expanded", String(opened));
   });
-
-  mainNav.addEventListener("click", (event) => {
+  nav.addEventListener("click", (event) => {
     if (event.target.closest("a")) {
       document.body.classList.remove("menu-open");
       menuButton.setAttribute("aria-expanded", "false");
     }
   });
-
   const current = location.pathname.replace(/index\.html$/, "");
-  mainNav.querySelectorAll("a").forEach((link) => {
+  nav.querySelectorAll("a").forEach((link) => {
     const target = new URL(link.href).pathname.replace(/index\.html$/, "");
     if (target === current) link.classList.add("active");
   });
 }
 
-const accessibilityButton = document.querySelector("[data-accessibility]");
-const contrastKey = "sovfd-high-contrast";
+const searchInput = document.querySelector("[data-program-search]");
+const programCards = [...document.querySelectorAll("[data-program-card]")];
+const emptyState = document.querySelector("[data-empty-state]");
 
-if (localStorage.getItem(contrastKey) === "1") {
-  document.body.classList.add("high-contrast");
-}
-
-accessibilityButton?.addEventListener("click", () => {
-  const enabled = document.body.classList.toggle("high-contrast");
-  localStorage.setItem(contrastKey, enabled ? "1" : "0");
-  accessibilityButton.setAttribute("aria-pressed", String(enabled));
-});
-
-const cookie = document.querySelector("[data-cookie]");
-const cookieButton = document.querySelector("[data-cookie-accept]");
-
-if (cookie && localStorage.getItem("sovfd-cookie-accepted") !== "1") {
-  cookie.hidden = false;
-}
-
-cookieButton?.addEventListener("click", () => {
-  localStorage.setItem("sovfd-cookie-accepted", "1");
-  cookie.hidden = true;
-});
-
-const staffSearch = document.querySelector("[data-staff-search]");
-const staffCards = [...document.querySelectorAll("[data-staff-card]")];
-const emptySearch = document.querySelector("[data-search-empty]");
-
-if (staffSearch && staffCards.length) {
-  const filterStaff = () => {
-    const query = staffSearch.value.trim().toLowerCase();
+if (searchInput && programCards.length) {
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.trim().toLowerCase();
     let visible = 0;
-    staffCards.forEach((card) => {
-      const matches = card.textContent.toLowerCase().includes(query);
-      card.hidden = !matches;
-      if (matches) visible += 1;
+    programCards.forEach((card) => {
+      const matched = card.textContent.toLowerCase().includes(query);
+      card.hidden = !matched;
+      if (matched) visible += 1;
     });
-    if (emptySearch) emptySearch.hidden = visible !== 0;
-  };
-
-  staffSearch.addEventListener("input", filterStaff);
-  document.querySelector("[data-staff-form]")?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    filterStaff();
+    if (emptyState) emptyState.hidden = visible !== 0;
   });
 }
+
+const chanceForm = document.querySelector("[data-chance-form]");
+const chanceNumber = document.querySelector("[data-chance-number]");
+const chanceMessage = document.querySelector("[data-chance-message]");
+
+chanceForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const scores = [...chanceForm.querySelectorAll("input[type=number]")].map((input) => Number(input.value));
+  if (scores.some((score) => !Number.isFinite(score) || score < 0 || score > 100)) return;
+  const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+  chanceNumber.textContent = average.toFixed(1);
+  chanceMessage.textContent = average >= 66
+    ? "Средний балл выше проходного уровня большинства программ. Шансы на бюджет хорошие."
+    : average >= 52
+      ? "Есть подходящие программы и хорошие варианты платного обучения."
+      : "Рекомендуем рассмотреть программы с более низким проходным баллом и платные места.";
+});
