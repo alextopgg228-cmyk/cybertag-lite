@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Панель управления — СГУС</title>
+    <link rel="icon" href="../assets/sgus/logo.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css?v=20260630-1">
+  </head>
+  <body class="admin-page">
+    <div class="admin-shell" data-admin-panel>
+      <aside class="admin-sidebar">
+        <a class="admin-brand" href="../"><img src="../assets/sgus/logo.png" alt=""><span>СГУС<small>Панель управления</small></span></a>
+        <nav class="admin-nav"><button class="active" type="button" data-admin-tab="dashboard">Обзор</button><button type="button" data-admin-tab="faculties">Факультеты</button><button type="button" data-admin-tab="specialties">Специальности</button></nav>
+        <div class="admin-sidebar-bottom"><a href="../" target="_blank">Открыть сайт ↗</a><button type="button" data-logout>Выйти</button></div>
+      </aside>
+      <main class="admin-main">
+        <header class="admin-topbar"><div><small>СГУС · навигатор абитуриента</small><strong>Управление контентом</strong></div><span class="admin-user"><i>А</i>Администратор</span></header>
+        <div class="admin-notice" data-admin-notice hidden></div>
+
+        <section class="admin-section" data-admin-section="dashboard">
+          <div class="admin-title"><div><span class="record-code">Обзор</span><h1>Панель управления</h1><p>Редактируйте каталог сайта без изменения HTML-кода.</p></div></div>
+          <div class="admin-warning"><strong>Где сохраняются изменения</strong><p>Сайт размещён на GitHub Pages без серверной базы данных. Поэтому изменения сохраняются в браузере этого устройства. Для переноса используйте экспорт и импорт JSON.</p></div>
+          <div class="admin-stats"><article><span>Факультеты</span><strong data-faculty-total>0</strong><button type="button" data-admin-tab="faculties">Управлять →</button></article><article><span>Специальности</span><strong data-specialty-total>0</strong><button type="button" data-admin-tab="specialties">Управлять →</button></article><article><span>Статус сайта</span><strong class="online-status">Работает</strong><a href="../" target="_blank">Открыть →</a></article></div>
+          <div class="admin-tools"><div><h2>Резервная копия</h2><p>Скачайте каталог в JSON или загрузите сохранённый файл.</p></div><div class="tool-actions"><button class="small-button" type="button" data-export-data>Экспорт JSON</button><label class="small-button file-button">Импорт JSON<input type="file" accept="application/json" data-import-data></label><button class="small-button danger" type="button" data-reset-data>Сбросить данные</button></div></div>
+        </section>
+
+        <section class="admin-section" data-admin-section="faculties" hidden>
+          <div class="admin-title"><div><span class="record-code">Каталог</span><h1>Факультеты</h1><p>Добавление, редактирование и удаление факультетов.</p></div><button class="button" type="button" data-new-record="faculty">+ Новый факультет</button></div>
+          <form class="admin-form" data-faculty-form data-new-title="Новый факультет">
+            <input type="hidden" name="id">
+            <div class="form-heading"><h2 data-form-title>Новый факультет</h2><p>Заполните информацию, которая будет показана на странице факультетов.</p></div>
+            <div class="admin-form-grid">
+              <label class="wide">Название<input name="name" required placeholder="Факультет физической культуры"></label>
+              <label class="wide">Описание<textarea name="description" required rows="3" placeholder="Краткое описание факультета"></textarea></label>
+              <label>Стоимость<input name="cost" required placeholder="от 105 600 ₽ в год"></label>
+              <label>Количество программ<input type="number" name="programs" min="0" required></label>
+              <label>Проходной балл: бюджет<input type="number" name="budgetScore" min="0" max="400" required></label>
+              <label>Проходной балл: платное<input type="number" name="paidScore" min="0" max="400" required></label>
+              <label>Бюджетных мест<input type="number" name="budgetPlaces" min="0" required></label>
+              <label>Платных мест<input type="number" name="paidPlaces" min="0" required></label>
+              <label class="wide">Путь к изображению<input name="image" required value="assets/sgus/program-education.jpg"></label>
+            </div>
+            <div class="form-actions"><button class="button" type="submit">Сохранить факультет</button><button class="button secondary" type="button" data-cancel-edit>Очистить</button></div>
+          </form>
+          <div class="admin-records" data-admin-faculties></div>
+        </section>
+
+        <section class="admin-section" data-admin-section="specialties" hidden>
+          <div class="admin-title"><div><span class="record-code">Каталог</span><h1>Специальности</h1><p>Полные сведения о поступлении и обучении.</p></div><button class="button" type="button" data-new-record="specialty">+ Новая специальность</button></div>
+          <form class="admin-form" data-specialty-form data-new-title="Новая специальность">
+            <input type="hidden" name="id">
+            <div class="form-heading"><h2 data-form-title>Новая специальность</h2><p>Эти поля формируют отдельную страницу специальности.</p></div>
+            <div class="admin-form-grid">
+              <label>Код<input name="code" required placeholder="49.03.01"></label>
+              <label>Название<input name="name" required placeholder="Физическая культура"></label>
+              <label>Уровень<input name="level" required value="Бакалавриат"></label>
+              <label>Квалификация<input name="qualification" required value="Бакалавр"></label>
+              <label>Форма обучения<input name="studyForm" required placeholder="Очная, заочная"></label>
+              <label>Срок обучения<input name="duration" required placeholder="4 года"></label>
+              <label>Бюджетных мест<input type="number" name="budgetPlaces" min="0" required></label>
+              <label>Платных мест<input type="number" name="paidPlaces" min="0" required></label>
+              <label>Проходной: бюджет<input type="number" name="budgetScore" min="0" max="400" required></label>
+              <label>Проходной: платное<input type="number" name="paidScore" min="0" max="400" required></label>
+              <label>Стоимость<input name="cost" required placeholder="от 105 600 ₽ в год"></label>
+              <label>Факультет<select name="facultyId"></select></label>
+              <label class="wide">Вступительные испытания<input name="exams" required placeholder="Русский язык, биология, профессиональное испытание"></label>
+              <label class="wide">Описание<textarea name="description" required rows="3"></textarea></label>
+              <label class="wide">Путь к изображению<input name="image" required value="assets/sgus/specialty-physical.jpg"></label>
+            </div>
+            <div class="form-actions"><button class="button" type="submit">Сохранить специальность</button><button class="button secondary" type="button" data-cancel-edit>Очистить</button></div>
+          </form>
+          <div class="admin-records" data-admin-specialties></div>
+        </section>
+      </main>
+    </div>
+    <script src="../data.js?v=20260630-1"></script>
+    <script src="../admin.js?v=20260630-1"></script>
+  </body>
+</html>
