@@ -37,6 +37,9 @@ button, input, textarea, select { font: inherit; }
 .main-nav a:hover::after, .main-nav a.active::after { transform: scaleX(1); }
 .nav-cta { padding: 10px 15px !important; color: var(--white) !important; background: var(--violet); border-radius: 7px; }
 .nav-cta::after { display: none; }
+.nav-admin { padding: 8px 12px !important; color: #ffd8d8 !important; border: 1px solid #d55252; border-radius: 7px; white-space: nowrap; }
+.nav-admin::after { display: none; }
+.nav-admin:hover { color: var(--white) !important; background: #a52d35; border-color: #a52d35; }
 .menu-toggle { display: none; width: 44px; height: 44px; padding: 10px; background: #252934; border: 1px solid #3a3e49; border-radius: 8px; cursor: pointer; }
 .menu-toggle span { display: block; height: 2px; margin: 5px 0; background: var(--white); }
 
@@ -295,6 +298,7 @@ button, input, textarea, select { font: inherit; }
   .main-nav a { padding: 13px 0; }
   .main-nav a::after { bottom: 7px; }
   .nav-cta { margin-top: 8px; text-align: center; }
+  .nav-admin { margin-top: 7px; text-align: center; }
   .hero-title-row { flex-direction: column; }
   .program-grid, .faculty-grid, .contact-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }

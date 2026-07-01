@@ -15,6 +15,16 @@
   const scoreText = (value) => Number(value) > 0 ? `от ${escapeHtml(value)}` : "нет набора";
   const assetUrl = (path) => /^(https?:|data:|\/)/.test(path || "") ? path : `${root}${path}`;
 
+  function addAdminNavigation() {
+    const nav = document.querySelector("[data-nav]");
+    if (!nav || nav.querySelector(".nav-admin")) return;
+    const link = document.createElement("a");
+    link.className = "nav-admin";
+    link.href = `${root}admin/login/`;
+    link.textContent = "Админ-панель";
+    nav.append(link);
+  }
+
   function setupNavigation() {
     const menuButton = document.querySelector("[data-menu-toggle]");
     const nav = document.querySelector("[data-nav]");
@@ -194,6 +204,7 @@
     footer.append(" · ", link);
   }
 
+  addAdminNavigation();
   setupNavigation();
   renderSpecialties();
   renderFaculties();
